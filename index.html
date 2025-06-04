@@ -1,6 +1,123 @@
-<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="jEPVLNO" data-pen-title="Untitled" data-user="samir-jumshudzada" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-    <span>See the Pen <a href="https://codepen.io/samir-jumshudzada/pen/jEPVLNO">
-    Untitled</a> by Samir Jumshudzada (<a href="https://codepen.io/samir-jumshudzada">@samir-jumshudzada</a>)
-    on <a href="https://codepen.io">CodePen</a>.</span>
-  </p>
-  <script async src="https://public.codepenassets.com/embed/index.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Typewriter Card</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for Typewriter Animation */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrollbars if content slightly exceeds viewport */
+        }
+
+        .typewriter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure it takes full viewport height for centering */
+            background-color: black; /* Full solid black background */
+        }
+
+        .typewriter-box {
+            position: relative;
+            background-color: #000; /* Card background remains black for consistency */
+            padding: 2.5rem 3rem; /* Slightly more padding for a modern feel */
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.3), 0 5px 10px -5px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+            overflow: hidden; /* Hide overflowing text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 95%; /* More responsive width */
+            width: fit-content; /* Adjust width to content */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+
+        .typewriter-text {
+            font-family: 'Roboto Mono', monospace; /* Modern monospace font */
+            font-size: 1.75rem; /* Adjusted base font size for smaller screens */
+            font-weight: 700; /* font-bold */
+            color: #e0e0e0; /* Slightly off-white for a softer look */
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide text that overflows */
+            border-right: 0.08em solid #e0e0e0; /* Thinner, subtle blinking cursor */
+            animation:
+                typing 3.5s steps(23, end) forwards, /* Adjust steps for "Welcome to my portfolio" */
+                blink-caret 0.75s step-end infinite; /* Blinking cursor */
+            width: 0; /* Start with 0 width to simulate typing */
+        }
+
+        /* Keyframes for typing animation */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* Keyframes for blinking caret - more subtle */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #e0e0e0; }
+        }
+
+        /* Responsive adjustments for font size */
+        @media (min-width: 480px) { /* Extra small screens */
+            .typewriter-text {
+                font-size: 2.25rem; /* Slightly larger for small phones */
+            }
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .typewriter-text {
+                font-size: 2.75rem; /* Default size for small tablets/large phones */
+            }
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .typewriter-text {
+                font-size: 3.5rem; /* Medium screens */
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .typewriter-text {
+                font-size: 4.25rem; /* Large screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="typewriter-container">
+        <div class="typewriter-box">
+            <span class="typewriter-text" id="typewriter-name"></span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameElement = document.getElementById('typewriter-name');
+            const nameToType = "Welcome to my portfolio"; // Still "Welcome to my portfolio"
+
+            // Set the text content initially (it will be hidden by overflow: hidden)
+            nameElement.textContent = nameToType;
+
+            // Calculate the number of steps for the typing animation based on text length
+            // This ensures the animation speed is consistent regardless of name length
+            const textLength = nameToType.length;
+            const typingDuration = 3.5; // seconds
+            const steps = textLength; // One step per character
+
+            // Apply the animation properties dynamically
+            nameElement.style.animation = `
+                typing ${typingDuration}s steps(${steps}, end) forwards,
+                blink-caret 0.75s step-end infinite
+            `;
+        });
+    </script>
+</body>
+</html>
